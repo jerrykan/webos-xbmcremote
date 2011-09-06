@@ -1,0 +1,10 @@
+{
+    "id": "com.jerrykan.app.xbmcremote",
+    "version": "0.0.1",
+    "vendor": "JerryKan",
+    "type": "web",
+    "main": "index.html",
+    "title": "XBMC Remote",
+    "icon": "icon.png",
+    "uiRevision": 2
+}
