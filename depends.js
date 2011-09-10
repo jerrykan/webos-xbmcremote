@@ -12,6 +12,9 @@ enyo.depends(
     
     // Music
     "source/Music.js",
+    "source/MusicAlbums.js",
+    "source/MusicArtists.js",
+    "source/MusicSongs.js",
     
     // Music Videos
     "source/MusicVideos.js",
