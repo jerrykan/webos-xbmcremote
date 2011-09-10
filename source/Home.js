@@ -76,19 +76,50 @@ enyo.kind({
             ]
         },
         {kind: "Remote.Preferences", name: "preferences"},
+        
+        // XBMC Service
+        {name: "xbmcService", kind: "Remote.XbmcJsonService",
+            onSuccess: "xbmcServiceSuccess",
+            onFailure: "xbmcServiceFailure",
+        },
+
     ],
 
     create: function() {
-        enyo.log("STUFF");
         this.inherited(arguments);
+        this.$.xbmcService.loadConnection();
+        
+        // Listen for global events (for the xbmcService)
+        enyo.dispatcher.rootHandler.addListener(this)
     },
+    
+    xbmcEventHandler: function(inSender, inEvent) {
+        data = inEvent.data;
+        
+        this.$.xbmcService.call({
+            method: data.method,
+            params: data.params
+        }, {
+            onSuccess: data.onSuccess || this.$.xbmcService.onSuccess,
+            onFailure: data.onFailure || this.$.xbmcService.onFailure,
+        });
+        
+    },
+    
+    xbmcServiceSuccess: function(inSender, inResponse, inRequest) {
+        enyo.log("Hurrah!");
+    },
+    xbmcServiceFailure: function(inSender, inResponse, inRequest) {
+        enyo.log("Oh Dear!");
+    },
+    
     showPreferences: function() {
         this.$.preferences.openAtCenter();
         console.log("showPreferences");
     },
     
     changeView: function(inSender, inEvent) {
-        this.$.pane.selectViewByName(inSender._view).updateData();
+        this.$.pane.selectViewByName(inSender._view).update();
     },
     
     playTvShowEpisode: function(inSender, inTvShowEpisodeId) {

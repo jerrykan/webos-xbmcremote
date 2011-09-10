@@ -5,6 +5,14 @@ enyo.kind({
         onPlay: "",
     },
     components: [
+        {kind: "PageHeader", components: [
+            {name: "headerText", kind: enyo.VFlexBox,
+                content: "", flex: 1
+            },
+            {name: "backButton", kind: "Button", content: "Back",
+                onclick: "goBack"
+            }
+        ]},
         {name: "pane", kind: "Pane", flex: 1, components: [
             {name: "movies", className: "enyo-bg", kind: "Remote.MovieList",
                 onSelect: "selectMovie"
@@ -12,18 +20,11 @@ enyo.kind({
         ]},
     ],
 
-    updateData: function() {
-        this.$.pane.view.updateData();
+    update: function() {
+        this.$.pane.view.updateItems();
     },
     
     selectMovie: function(inSender, inMovieId) {
         this.doPlay(inMovieId);
     },
-    
-    /*
-    goBack: function(inSender, inEvent) {
-        this.$.pane.back(inEvent);
-    },
-    */
-
 });

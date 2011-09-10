@@ -30,6 +30,17 @@ enyo.kind({
         this.inherited(arguments);
     },
     
+    dispatchResponse: function(inDelegate, inRequest) {
+        // Catch if a function has been passed instead of a string
+        if (typeof inDelegate === "function") {
+            inDelegate(this, inRequest.response, inRequest);
+            return
+        }
+        
+        // Can this be replace by calling the base class dispatchResponse()?
+        this.dispatch(this.owner, inDelegate, [inRequest.response, inRequest]);
+    },
+
     setConnection: function(host, port) {
         this.url = 'http://' + host + ':' + port + '/jsonrpc';
     },

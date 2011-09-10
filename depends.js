@@ -1,4 +1,8 @@
 enyo.depends(
+    // libs
+    "source/libs/ListView.js",
+    "source/libs/XbmcJsonService.js",
+    
     "source/Home.js",
     "source/Preferences.js",
     
@@ -21,6 +25,6 @@ enyo.depends(
     // Files
     "source/Files.js",
     
-    "source/XbmcJsonService.js",
+    // style
     "css/XbmcRemote.css"
 );
