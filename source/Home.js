@@ -8,35 +8,37 @@ enyo.kind({
                 {kind: enyo.Header, components: [
                     {content: "Menu"},
                 ]},
-                
-                {kind: enyo.VFlexBox, flex: 1, components: [
-                    {kind: enyo.Item, _view: "movies", layoutKind: enyo.HFlexLayout, align: "middle", onclick: "changeView", components: [
-                        {kind: enyo.Image, src: "images/movies.png"},
-                        {width: "20px"},
-                        {content: "Movies"},
-                    ]},
-                    {kind: enyo.Item, _view: "tvShows", layoutKind: enyo.HFlexLayout, onclick: "changeView", components: [
-                        {kind: enyo.Image, src: "images/tvshows.png"},
-                        {width: "20px"},
-                        {content: "TV Shows"},
-                    ]},
-                    {kind: enyo.Item, _view: "musicVideos", layoutKind: enyo.HFlexLayout, onclick: "changeView", components: [
-                        {kind: enyo.Image, src: "images/music_videos.png"},
-                        {width: "20px"},
-                        {content: "Music Videos"},
-                    ]},
-                    {kind: enyo.Item, _view: "music", layoutKind: enyo.HFlexLayout, onclick: "changeView", components: [
-                        {kind: enyo.Image, src: "images/music.png"},
-                        {width: "20px"},
-                        {content: "Music"},
-                    ]},
-                    {kind: enyo.Item, _view: "files", layoutKind: enyo.HFlexLayout, onclick: "changeView", components: [
-                        {kind: enyo.Image, src: "images/files.png"},
-                        {width: "20px"},
-                        {content: "Files"},
-                    ]},
+                {kind: enyo.Item, _view: "movies", layoutKind: enyo.HFlexLayout, align: "middle", onclick: "changeView", components: [
+                    {kind: enyo.Image, src: "images/movies.png"},
+                    {width: "20px"},
+                    {content: "Movies"},
                 ]},
-          
+                {kind: enyo.Item, _view: "tvShows", layoutKind: enyo.HFlexLayout, onclick: "changeView", components: [
+                    {kind: enyo.Image, src: "images/tvshows.png"},
+                    {width: "20px"},
+                    {content: "TV Shows"},
+                ]},
+                {kind: enyo.Item, _view: "musicVideos", layoutKind: enyo.HFlexLayout, onclick: "changeView", components: [
+                    {kind: enyo.Image, src: "images/music_videos.png"},
+                    {width: "20px"},
+                    {content: "Music Videos"},
+                ]},
+                {kind: enyo.Item, _view: "music", layoutKind: enyo.HFlexLayout, onclick: "changeView", components: [
+                    {kind: enyo.Image, src: "images/music.png"},
+                    {width: "20px"},
+                    {content: "Music"},
+                ]},
+                {kind: enyo.Item, _view: "files", layoutKind: enyo.HFlexLayout, onclick: "changeView", components: [
+                    {kind: enyo.Image, src: "images/files.png"},
+                    {width: "20px"},
+                    {content: "Files"},
+                ]},
+                {kind:enyo.VFlexBox, flex: 1},
+                {kind: enyo.Item, _view: "remote", layoutKind: enyo.HFlexLayout, onclick: "changeView", components: [
+                    {kind: enyo.Image, src: "images/remote.png"},
+                    {width: "20px"},
+                    {content: "Remote"},
+                ]},
                 {kind: enyo.Toolbar, pack: "justify", components: [
                     {flex: 1},
                 ]},
@@ -123,6 +125,12 @@ enyo.kind({
     },
     
     playTvShowEpisode: function(inSender, inTvShowEpisodeId) {
+        this.$.xbmcService.call({
+            method: "XBMC.Play",
+            params: {
+                episodeid: inTvShowEpisodeId,
+            },
+        });
         enyo.log("playTvShowEpisode", arguments);
     },
     playMovie: function(inSender, inMovieId) {

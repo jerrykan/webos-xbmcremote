@@ -72,9 +72,6 @@ enyo.kind({
         var port = this.$.port.value;
         
         this.$.testService.setConnection(host, port);
-        
-//        enyo.log("saveClick", host, port);
-//        this.$.testService.setHost(host);
         this.$.testService.call({
             method: "JSONRPC.Ping"
         });
