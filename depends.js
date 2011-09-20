@@ -28,6 +28,9 @@ enyo.depends(
     // Files
     "source/Files.js",
     
+    // Files
+    "source/Remote.js",
+    
     // style
     "css/XbmcRemote.css"
 );

@@ -62,6 +62,7 @@ enyo.kind({
                     {name: "files", kind: "Remote.Files",
                         onPlay: "playTvShowEpisode"
                     },
+                    {name: "remote", kind: "Remote.Remote"},
                 ]},
           
                 {kind: enyo.Toolbar, pack: "justify", components: [
