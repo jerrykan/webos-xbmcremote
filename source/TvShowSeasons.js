@@ -5,21 +5,9 @@ enyo.kind({
         tvShowId: null,
     },
     
-    create: function() {
-        this.inherited(arguments);
-        
-        this.itemsField = "seasons";
-    },
-    
     updateItems: function() {
-        this.requestItems("VideoLibrary.GetSeasons", {
-            tvshowid: this.tvShowId,
-            fields: ["playcount"],
+        this.requestItems("getTvShowSeasons", {
+            tvShowId: this.tvShowId,
         });
-    },
-    
-    selectItem: function(inSender, inEvent) {
-        var itemId = parseInt(this.items[inEvent.rowIndex].label.split(' ')[1], 10);
-        this.doSelect(itemId);
     },
 });

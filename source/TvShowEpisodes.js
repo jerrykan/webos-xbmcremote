@@ -6,18 +6,10 @@ enyo.kind({
         season: null,
     },
     
-    create: function() {
-        this.inherited(arguments);
-        
-        this.itemsField = "episodes";
-        this.itemId = "episodeid";
-    },
-    
     updateItems: function() {
-        this.requestItems("VideoLibrary.GetEpisodes", {
-            tvshowid: this.tvShowId,
+        this.requestItems("getTvShowEpisodes", {
+            tvShowId: this.tvShowId,
             season: this.season,
-            fields: ["playcount"],
         });
     },
 });

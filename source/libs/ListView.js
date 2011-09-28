@@ -31,7 +31,7 @@ enyo.kind({
     
     requestItems: function(method, params) {
         window.enyo.dispatch({
-            type: "xbmcEvent",
+            type: "xbmcRequestEvent",
             data: {
                 method: method,
                 params: params,
@@ -41,11 +41,13 @@ enyo.kind({
     },
     
     updateItems: function() {
-        // Should be defined by the child class
+        if (typeof this.xbmcMethod === "string") {
+            this.requestItems(this.xbmcMethod);
+        }
     },
     
     gotItemsSuccess: function(inSender, inResponse, inRequest) {
-        this.items = inResponse.result[this.itemsField];
+        this.items = inResponse.items;
         this.$.items.refresh();
     },
     gotItemsFailure: function(inSender, inResponse, inRequest) {
@@ -55,7 +57,7 @@ enyo.kind({
     },
     
     selectItem: function(inSender, inEvent) {
-        var itemId = this.items[inEvent.rowIndex][this.itemId]
+        var itemId = this.items[inEvent.rowIndex].id
         this.doSelect(itemId);
     },
 });

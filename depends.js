@@ -2,6 +2,7 @@ enyo.depends(
     // libs
     "source/libs/ListView.js",
     "source/libs/XbmcJsonService.js",
+    "source/libs/XbmcLibraryService.js",
     
     "source/Home.js",
     "source/Preferences.js",

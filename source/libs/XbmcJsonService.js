@@ -1,17 +1,13 @@
 enyo.kind({
     name: "Remote.XbmcJsonService",
-    kind: "WebService",
+    kind: enyo.WebService,
     requestKind: "Remote.XbmcJsonService.Request",
     method: "POST",
     
-    create: function() {
-        this.inherited(arguments);
-    },
-    
-    call: function() {
+    call: function(inParams, inProps) {
         // convert the body of the request to a string if an object has
         // been passed in
-        if ( arguments.length > 0 && typeof(arguments[0]) === "object" ) {
+        if (typeof inParams === "object") {
             // Set the default values for the request
             var jsonrpc = {
                 jsonrpc: "2.0",
@@ -19,14 +15,16 @@ enyo.kind({
             }
             
             // Merge the values passed in the the defauls
-            for ( var attr in arguments[0] ) {
-                jsonrpc[attr] = arguments[0][attr];
+            for (var attr in inParams) {
+                jsonrpc[attr] = inParams[attr];
             }
             
             // Convert the merged values to a string to do the actual call
+            //params = enyo.json.stringify(jsonrpc);
             arguments[0] = enyo.json.stringify(jsonrpc);
         }
         
+        // FIX: might be a better way than overwritting arguments[0]
         this.inherited(arguments);
     },
     
@@ -37,8 +35,16 @@ enyo.kind({
             return
         }
         
-        // Can this be replace by calling the base class dispatchResponse()?
-        this.dispatch(this.owner, inDelegate, [inRequest.response, inRequest]);
+        this.inherited(arguments)
+    },
+    responseSuccess: function(inRequest) {
+        // Check if a "filter" function has been provided to prep the response
+        if (typeof inRequest.filterSuccess === "function") {
+            inRequest.responseOriginal = inRequest.response;
+            inRequest.response = inRequest.filterSuccess(inRequest.response);
+        }
+        
+        this.inherited(arguments);
     },
 
     setConnection: function(host, port) {
@@ -57,11 +63,7 @@ enyo.kind({
 
 enyo.kind({
     name: "Remote.XbmcJsonService.Request",
-    kind: "WebService.Request",
-    
-    create: function() {
-        this.inherited(arguments);
-    },
+    kind: enyo.WebService.Request,
     
     isSuccess: function(inStatus) {
         if ( !this.inherited(arguments) ) {

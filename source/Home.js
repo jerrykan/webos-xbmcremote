@@ -78,10 +78,12 @@ enyo.kind({
                 {caption: "Preferences", onclick: "showPreferences"},
             ]
         },
-        {kind: "Remote.Preferences", name: "preferences"},
+        {kind: "Remote.Preferences", name: "preferences",
+            onSave: "reloadSettings"
+        },
         
         // XBMC Service
-        {name: "xbmcService", kind: "Remote.XbmcJsonService",
+        {name: "xbmcService", kind: "Remote.XbmcLibraryService",
             onSuccess: "xbmcServiceSuccess",
             onFailure: "xbmcServiceFailure",
         },
@@ -96,7 +98,12 @@ enyo.kind({
         enyo.dispatcher.rootHandler.addListener(this)
     },
     
+    xbmcRequestEventHandler: function(inSender, inEvent) {
+        this.$.xbmcService.doRequest(inEvent.data);
+    },
     xbmcEventHandler: function(inSender, inEvent) {
+        enyo.log("Depricated:", inEvent.type, inEvent.data);
+        /*
         data = inEvent.data;
         
         this.$.xbmcService.call({
@@ -105,8 +112,9 @@ enyo.kind({
         }, {
             onSuccess: data.onSuccess || this.$.xbmcService.onSuccess,
             onFailure: data.onFailure || this.$.xbmcService.onFailure,
+            filterSuccess: function(resp) { return resp; },
         });
-        
+        */
     },
     
     xbmcServiceSuccess: function(inSender, inResponse, inRequest) {
@@ -119,6 +127,10 @@ enyo.kind({
     showPreferences: function() {
         this.$.preferences.openAtCenter();
         console.log("showPreferences");
+    },
+    reloadSettings: function() {
+        this.$.xbmcService.loadConnection();
+        // reset the views
     },
     
     changeView: function(inSender, inEvent) {
