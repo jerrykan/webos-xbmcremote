@@ -101,21 +101,6 @@ enyo.kind({
     xbmcRequestEventHandler: function(inSender, inEvent) {
         this.$.xbmcService.doRequest(inEvent.data);
     },
-    xbmcEventHandler: function(inSender, inEvent) {
-        enyo.log("Depricated:", inEvent.type, inEvent.data);
-        /*
-        data = inEvent.data;
-        
-        this.$.xbmcService.call({
-            method: data.method,
-            params: data.params
-        }, {
-            onSuccess: data.onSuccess || this.$.xbmcService.onSuccess,
-            onFailure: data.onFailure || this.$.xbmcService.onFailure,
-            filterSuccess: function(resp) { return resp; },
-        });
-        */
-    },
     
     xbmcServiceSuccess: function(inSender, inResponse, inRequest) {
         enyo.log("Hurrah!");

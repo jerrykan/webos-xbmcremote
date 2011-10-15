@@ -28,52 +28,34 @@ enyo.kind({
     ],
     
     update: function() {
-        this.actionRequest("Player.GetActivePlayers", "updateRemote")
+        //this.actionRequest("Player.GetActivePlayers", "updateRemote")
         //this.$.pane.view.updateItems();
     },
-    updateRemote: function(inSender, inReponse, inRequest) {
-        if (inReponse.result.audio === true ) {
-            this.activePlayer = 'Audio';
-        } else if (inReponse.result.picture === true ) {
-            this.activePlayer = 'Picture';
-        } else if (inReponse.result.video === true ) {
-            this.activePlayer = 'Video';
-        } else {
-            this.activePlayer = null;
-        }
-    },
     
-    actionRequest: function(method, onSuccess) {
+    actionPerform: function(method) {
         window.enyo.dispatch({
-            type: "xbmcEvent",
+            type: "xbmcRequestEvent",
             data: {
-                method: method,
-                onSuccess: enyo.bind(this, onSuccess),
+                method: method
             }
         });
     },
-    
-    actionPerform: function(action) {
-        if (this.activePlayer) {
-            this.actionRequest(this.activePlayer + 'Player.' + action);
-        }
-    },
     actionSkipPrevious: function() {
-        this.actionPerform('SkipPrevious');
+        this.actionPerform('doSkipPrevious');
     },
     actionRewind: function() {
-        this.actionPerform('Rewind');
+        this.actionPerform('doRewind');
     },
     actionPlayPause: function() {
-        this.actionPerform('PlayPause');
+        this.actionPerform('doPlayPause');
     },
     actionStop: function() {
-        this.actionPerform('Stop');
+        this.actionPerform('doStop');
     },
     actionForward: function() {
-        this.actionPerform('Forward');
+        this.actionPerform('doForward');
     },
     actionSkipNext: function() {
-        this.actionPerform('SkipNext');
+        this.actionPerform('doSkipNext');
     },
 });

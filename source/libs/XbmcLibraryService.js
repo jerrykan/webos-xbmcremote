@@ -238,4 +238,39 @@ enyo.kind({
     // Files
     
     // Remote
+    doSkipPrevious: function(inParams) {
+        return {
+            method: "VideoPlayer.SkipPrevious"
+        };
+    },
+    doRewind: function(inParams) {
+        return {
+            method: "VideoPlayer.Rewind"
+        };
+        
+    },
+    doPlayPause: function(inParams) {
+        return {
+            method: "VideoPlayer.PlayPause"
+        };
+        
+    },
+    doStop: function(inParams) {
+        return {
+            method: "VideoPlayer.Stop"
+        };
+        
+    },
+    doForward: function(inParams) {
+        return {
+            method: "VideoPlayer.Forward"
+        };
+        
+    },
+    doSkipNext: function(inParams) {
+        return {
+            method: "VideoPlayer.SkipNext"
+        };
+        
+    },
 });
