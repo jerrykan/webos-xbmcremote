@@ -40,6 +40,11 @@ enyo.kind({
         });
     },
     
+    update: function() {
+        this.items = [];
+        this.$.items.refresh();
+        this.updateItems();
+    },
     updateItems: function() {
         if (typeof this.xbmcMethod === "string") {
             this.requestItems(this.xbmcMethod);

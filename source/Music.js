@@ -44,34 +44,34 @@ enyo.kind({
     ],
 
     update: function() {
-        if (this.$.pane.view.updateItems) {
-            this.$.pane.view.updateItems();
+        if (this.$.pane.view.update) {
+            this.$.pane.view.update();
         }
     },
     
     selectByAlbum: function() {
         this.$.albums.setArtistId(null);
-        this.$.pane.selectViewByName("albums").updateItems();
+        this.$.pane.selectViewByName("albums").update();
     },
     
     selectByArtist: function() {
-        this.$.pane.selectViewByName("artists").updateItems();
+        this.$.pane.selectViewByName("artists").update();
     },
     
     selectBySong: function() {
         this.$.songs.setAlbumId(null);
         this.$.songs.setArtistId(null);
-        this.$.pane.selectViewByName("songs").updateItems();
+        this.$.pane.selectViewByName("songs").update();
     },
     
     selectArtist: function(inSender, inArtistId) {
         this.$.albums.setArtistId(inArtistId);
-        this.$.pane.selectViewByName("albums").updateItems();
+        this.$.pane.selectViewByName("albums").update();
     },
 
     selectAlbum: function(inSender, inAlbumId) {
         this.$.songs.setAlbumId(inAlbumId);
-        this.$.pane.selectViewByName("songs").updateItems();
+        this.$.pane.selectViewByName("songs").update();
     },
 
     goBack: function(inSender, inEvent) {

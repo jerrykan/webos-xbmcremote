@@ -27,17 +27,17 @@ enyo.kind({
     ],
     
     update: function() {
-        this.$.pane.view.updateItems();
+        this.$.pane.view.update();
     },
     
     selectTvShow: function(inSender, inTvShowId) {
         this.$.seasons.setTvShowId(inTvShowId);
         this.$.episodes.setTvShowId(inTvShowId);
-        this.$.pane.selectViewByName("seasons").updateItems();
+        this.$.pane.selectViewByName("seasons").update();
     },
     selectSeason: function(inSender, inSeason) {
         this.$.episodes.setSeason(inSeason);
-        this.$.pane.selectViewByName("episodes").updateItems();
+        this.$.pane.selectViewByName("episodes").update();
     },
     selectEpisode: function(inSender, inTvShowEpisodeId) {
         this.doPlay(inTvShowEpisodeId);
