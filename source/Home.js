@@ -8,37 +8,25 @@ enyo.kind({
                 {kind: enyo.Header, components: [
                     {content: "Menu"},
                 ]},
-                {kind: enyo.Item, _view: "movies", layoutKind: enyo.HFlexLayout, align: "middle", onclick: "changeView", components: [
-                    {kind: enyo.Image, src: "images/movies.png"},
-                    {width: "20px"},
-                    {content: "Movies"},
-                ]},
-                {kind: enyo.Item, _view: "tvShows", layoutKind: enyo.HFlexLayout, onclick: "changeView", components: [
-                    {kind: enyo.Image, src: "images/tvshows.png"},
-                    {width: "20px"},
-                    {content: "TV Shows"},
-                ]},
-                {kind: enyo.Item, _view: "musicVideos", layoutKind: enyo.HFlexLayout, onclick: "changeView", components: [
-                    {kind: enyo.Image, src: "images/music_videos.png"},
-                    {width: "20px"},
-                    {content: "Music Videos"},
-                ]},
-                {kind: enyo.Item, _view: "music", layoutKind: enyo.HFlexLayout, onclick: "changeView", components: [
-                    {kind: enyo.Image, src: "images/music.png"},
-                    {width: "20px"},
-                    {content: "Music"},
-                ]},
-                {kind: enyo.Item, _view: "files", layoutKind: enyo.HFlexLayout, onclick: "changeView", components: [
-                    {kind: enyo.Image, src: "images/files.png"},
-                    {width: "20px"},
-                    {content: "Files"},
-                ]},
+                {kind: "Remote.HomeMenuItem", title: "Movies", iconSrc: "images/movies.png",
+                 _view: "movies", onclick: "changeView"
+                },
+                {kind: "Remote.HomeMenuItem", title: "TV Shows", iconSrc: "images/tv_shows.png",
+                 _view: "tvShows", onclick: "changeView"
+                },
+                {kind: "Remote.HomeMenuItem", title: "Music Videos", iconSrc: "images/music_videos.png",
+                 _view: "musicVideos", onclick: "changeView"
+                },
+                {kind: "Remote.HomeMenuItem", title: "Music", iconSrc: "images/music.png",
+                 _view: "music", onclick: "changeView"
+                },
+                {kind: "Remote.HomeMenuItem", title: "Files", iconSrc: "images/files.png",
+                 _view: "files", onclick: "changeView"
+                },
                 {kind:enyo.VFlexBox, flex: 1},
-                {kind: enyo.Item, _view: "remote", layoutKind: enyo.HFlexLayout, onclick: "changeView", components: [
-                    {kind: enyo.Image, src: "images/remote.png"},
-                    {width: "20px"},
-                    {content: "Remote"},
-                ]},
+                {kind: "Remote.HomeMenuItem", title: "Remote", iconSrc: "images/remote.png",
+                 _view: "remote", onclick: "changeView"
+                },
                 {kind: enyo.Toolbar, pack: "justify", components: [
                     {flex: 1},
                 ]},

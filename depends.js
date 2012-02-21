@@ -4,7 +4,9 @@ enyo.depends(
     "source/libs/XbmcJsonService.js",
     "source/libs/XbmcLibraryService.js",
     
+    // General
     "source/Home.js",
+    "source/HomeMenuItem.js",
     "source/Preferences.js",
     
     // Movies
