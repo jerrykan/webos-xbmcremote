@@ -24,7 +24,7 @@ enyo.kind({
         ]},
         
         {kind: "Popup", name: "failurePopup", components: [
-            {style: "font-size: 1.1em; text-align: center; ", content: "Trouble Getting Feed"},
+            {style: "font-size: 1.1em; text-align: center; ", content: "Could Not Contact Server"},
             {style: "font-size: 0.8em; text-align: justify", width: "320px", components: [
                 {name: "failureText"}
             ]},
