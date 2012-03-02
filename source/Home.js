@@ -34,7 +34,7 @@ enyo.kind({
           
             {name: "main", kind: enyo.SlidingView, peekWidth: 75, components: [
                 {name: "pane", kind: enyo.Pane, flex: 1, components: [
-                    {content: "SPLASH SCREEN"},
+                    {name: "splash", content: "SPLASH SCREEN"},
                     {name: "movies", kind: "Remote.Movies",
                         onPlay: "playMovie"
                     },
@@ -70,6 +70,11 @@ enyo.kind({
             onSave: "reloadSettings"
         },
         
+        {kind: "ModalDialog", name: "messagePopup", caption: "Error", components: [
+            {name: "messageText", style: "font-size: 0.8em; text-align: center;"},
+            {kind: enyo.Button, caption: "OK", onclick: "closeMessagePopup"}
+        ]},
+
         // XBMC Service
         {name: "xbmcService", kind: "Remote.XbmcLibraryService",
             onSuccess: "xbmcServiceSuccess",
@@ -94,7 +99,9 @@ enyo.kind({
         enyo.log("Hurrah!");
     },
     xbmcServiceFailure: function(inSender, inResponse, inRequest) {
-        enyo.log("Oh Dear!");
+        this.$.messagePopup.openAtCenter();
+        this.$.messageText.setContent("Could not retrieve data from the server");
+        this.$.pane.selectViewByName("splash").update()
     },
     
     showPreferences: function() {
@@ -104,6 +111,10 @@ enyo.kind({
     reloadSettings: function() {
         this.$.xbmcService.loadConnection();
         // reset the views
+    },
+
+    closeMessagePopup: function(inSender, inEvent) {
+        this.$.messagePopup.close();
     },
     
     changeView: function(inSender, inEvent) {
