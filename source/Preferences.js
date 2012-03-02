@@ -23,11 +23,8 @@ enyo.kind({
             }
         ]},
         
-        {kind: "Popup", name: "failurePopup", components: [
-            {style: "font-size: 1.1em; text-align: center; ", content: "Could Not Contact Server"},
-            {style: "font-size: 0.8em; text-align: justify", width: "320px", components: [
-                {name: "failureText"}
-            ]},
+        {kind: "ModalDialog", name: "failurePopup", caption: "Could Not Contact Server", components: [
+            {name: "failureText", style: "font-size: 0.8em; text-align: center;"},
             {kind: enyo.Button, caption: "OK", onclick: "closeFailurePopup"}
         ]},
         
