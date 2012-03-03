@@ -16,6 +16,11 @@ enyo.kind({
     create: function() {
         this.inherited(arguments);
         this.items = []
+        this.createComponent(
+            {kind: "Scrim", layoutKind: "VFlexLayout", align: "center", pack: "center", components: [
+                {kind: "SpinnerLarge"}
+            ]}
+        );
     },
     
     setupRow: function(inSender, inIndex) {
@@ -23,7 +28,6 @@ enyo.kind({
             return this.setupRowItem(inIndex);
         }
     },
-    
     setupRowItem: function(inIndex) {
         this.$.title.setContent(this.items[inIndex].label);
         return true
@@ -43,6 +47,7 @@ enyo.kind({
     update: function() {
         this.items = [];
         this.$.items.refresh();
+        this.showScrim(true);
         this.updateItems();
     },
     updateItems: function() {
@@ -54,6 +59,7 @@ enyo.kind({
     gotItemsSuccess: function(inSender, inResponse, inRequest) {
         this.items = inResponse.items;
         this.$.items.refresh();
+        this.showScrim(false);
     },
     gotItemsFailure: function(inSender, inResponse, inRequest) {
         enyo.log("Failed:", this.kind);
@@ -65,4 +71,9 @@ enyo.kind({
         var itemId = this.items[inEvent.rowIndex].id
         this.doSelect(itemId);
     },
+
+    showScrim: function(show) {
+        this.$.scrim.setShowing(show);
+        this.$.spinnerLarge.setShowing(show);
+    }
 });
