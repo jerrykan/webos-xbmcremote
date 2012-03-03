@@ -5,13 +5,12 @@ enyo.kind({
         onPlay: "",
     },
     components: [
-        {kind: "PageHeader", components: [
-            {name: "headerText", kind: enyo.VFlexBox,
-                content: "", flex: 1
-            },
-            {name: "backButton", kind: "Button", content: "Back",
-                onclick: "goBack"
-            }
+        {kind: "PageHeader", height: "70px", components: [
+            {kind: enyo.VFlexBox, flex: 1, components: [
+                {name: "showText", content: "TV Shows"},
+                {name: "seasonText", content: "", style: "font-size: 0.7em;"},
+            ]},
+            {name: "backButton", kind: "Button", content: "Back", onclick: "goBack"}
         ]},
         {name: "pane", kind: "Pane", flex: 1, components: [
             {name: "shows", className: "enyo-bg", kind: "Remote.TvShowList",
@@ -27,6 +26,7 @@ enyo.kind({
     ],
     
     update: function() {
+        this.$.backButton.setShowing(this.$.pane.getViewIndex() != 0);
         this.$.pane.view.update();
     },
     
@@ -34,10 +34,13 @@ enyo.kind({
         this.$.seasons.setTvShowId(inShow.id);
         this.$.episodes.setTvShowId(inShow.id);
         this.$.pane.selectViewByName("seasons").update();
+        this.$.showText.setContent(inShow.label);
+        this.$.backButton.setShowing(true);
     },
     selectSeason: function(inSender, inSeason) {
         this.$.episodes.setSeason(inSeason.id);
         this.$.pane.selectViewByName("episodes").update();
+        this.$.seasonText.setContent(inSeason.label);
     },
     selectEpisode: function(inSender, inEpisode) {
         this.doPlay(inEpisode.id);
@@ -45,5 +48,13 @@ enyo.kind({
     
     goBack: function(inSender, inEvent) {
         this.$.pane.back(inEvent);
-    },
+
+        var view = this.$.pane.getViewName();
+        if ( view == "seasons" ) {
+            this.$.seasonText.setContent("");
+        } else if ( view == "shows" ) {
+            this.$.showText.setContent("TV Shows");
+            this.$.backButton.setShowing(false);
+        }
+    }
 });
