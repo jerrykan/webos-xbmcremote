@@ -24,7 +24,7 @@ enyo.kind({
         this.$.pane.view.update();
     },
     
-    selectMovie: function(inSender, inMovieId) {
-        this.doPlay(inMovieId);
+    selectMovie: function(inSender, inMovie) {
+        this.doPlay(inMovie.id);
     },
 });

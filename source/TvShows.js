@@ -30,17 +30,17 @@ enyo.kind({
         this.$.pane.view.update();
     },
     
-    selectTvShow: function(inSender, inTvShowId) {
-        this.$.seasons.setTvShowId(inTvShowId);
-        this.$.episodes.setTvShowId(inTvShowId);
+    selectTvShow: function(inSender, inShow) {
+        this.$.seasons.setTvShowId(inShow.id);
+        this.$.episodes.setTvShowId(inShow.id);
         this.$.pane.selectViewByName("seasons").update();
     },
     selectSeason: function(inSender, inSeason) {
-        this.$.episodes.setSeason(inSeason);
+        this.$.episodes.setSeason(inSeason.id);
         this.$.pane.selectViewByName("episodes").update();
     },
-    selectEpisode: function(inSender, inTvShowEpisodeId) {
-        this.doPlay(inTvShowEpisodeId);
+    selectEpisode: function(inSender, inEpisode) {
+        this.doPlay(inEpisode.id);
     },
     
     goBack: function(inSender, inEvent) {

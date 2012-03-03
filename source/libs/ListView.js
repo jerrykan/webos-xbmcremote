@@ -68,8 +68,8 @@ enyo.kind({
     },
     
     selectItem: function(inSender, inEvent) {
-        var itemId = this.items[inEvent.rowIndex].id
-        this.doSelect(itemId);
+        var item = this.items[inEvent.rowIndex];
+        this.doSelect(item);
     },
 
     showScrim: function(show) {

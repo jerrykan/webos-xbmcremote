@@ -64,13 +64,13 @@ enyo.kind({
         this.$.pane.selectViewByName("songs").update();
     },
     
-    selectArtist: function(inSender, inArtistId) {
-        this.$.albums.setArtistId(inArtistId);
+    selectArtist: function(inSender, inArtist) {
+        this.$.albums.setArtistId(inArtist.id);
         this.$.pane.selectViewByName("albums").update();
     },
 
-    selectAlbum: function(inSender, inAlbumId) {
-        this.$.songs.setAlbumId(inAlbumId);
+    selectAlbum: function(inSender, inAlbum) {
+        this.$.songs.setAlbumId(inAlbum.id);
         this.$.pane.selectViewByName("songs").update();
     },
 
