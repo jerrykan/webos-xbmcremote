@@ -5,7 +5,7 @@ enyo.kind({
         {kind: enyo.SlidingPane, flex: 1, components: [
             
             {name: "menu", kind: enyo.SlidingView, width: "280px", components: [
-                {kind: enyo.Header, components: [
+                {kind: enyo.Header, height: "70px;", components: [
                     {content: "Menu"},
                 ]},
                 {kind: "Remote.HomeMenuItem", title: "Movies", iconSrc: "images/movies.png",
