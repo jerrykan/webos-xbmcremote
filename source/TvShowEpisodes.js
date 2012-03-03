@@ -45,12 +45,7 @@ enyo.kind({
         this.$.title.setContent(this.items[inIndex].title);
         this.$.plot.setContent(this.items[inIndex].plot);
         this.$.rating.applyStyle("clip", "rect(0, " + rating + "px, " + this.$.rating.height+ ", 0)");
-        
-        if (this.items[inIndex].played > 0) {
-            this.$.watched.show();
-        } else {
-            this.$.watched.hide();
-        }
+        this.$.watched.setShowing(this.items[inIndex].played > 0);
         
         return true;
     },

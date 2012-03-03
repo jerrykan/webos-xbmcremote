@@ -33,13 +33,7 @@ enyo.kind({
     },
     setupRowItem: function(inIndex) {
         this.$.title.setContent(this.items[inIndex].title);
-        
-        // Show a tick if all episodes have been watched
-        if (this.items[inIndex].played > 0) {
-            this.$.watched.show();
-        } else {
-            this.$.watched.hide();
-        }
+        this.$.watched.setShowing(this.items[inIndex].played > 0);
         
         // Hide the banner if there is no image URL to use (the "hidden" title
         // text will show through instead)
