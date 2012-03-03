@@ -18,10 +18,10 @@ enyo.kind({
                 onSelect: "selectTvShow"
             },
             {name: "seasons", className: "enyo-bg", kind: "Remote.TvShowSeasons",
-                onSelect: "selectSeason", onBack: "goBack"
+                onSelect: "selectSeason"
             },
             {name: "episodes", className: "enyo-bg", kind: "Remote.TvShowEpisodes",
-                onSelect: "selectEpisode", onBack: "goBack"
+                onSelect: "selectEpisode"
             },
         ]},
     ],
