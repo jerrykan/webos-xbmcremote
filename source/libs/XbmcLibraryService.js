@@ -128,6 +128,18 @@ enyo.kind({
             });
         };
         
+        // Sort the TV shows "natrually" (ie. without the "The")
+        items.sort(function(a, b) {
+            var aa = a.label.toLowerCase().replace(/^the\s+/, '');
+            var bb = b.label.toLowerCase().replace(/^the\s+/, '');
+
+            if ( aa === bb ) {
+                return 0;
+            }
+
+            return ( aa < bb ) ? -1 : 1;
+        });
+
         return {
             items: items
         }
