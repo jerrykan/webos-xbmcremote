@@ -1,6 +1,6 @@
 {
     "id": "com.jerrykan.app.xbmcremote",
-    "version": "0.0.1",
+    "version": "0.3.0",
     "vendor": "JerryKan",
     "type": "web",
     "main": "index.html",
