@@ -1,0 +1,31 @@
+webOS XBMC Remote
+=================
+webOS XBMC Remote for HP Touchpad
+
+Licensed under the GNU GPL v3
+
+Copyright (c) 2011-2012 John Kristensen (unless explicitly stated otherwise).
+
+
+Installation Notes
+------------------
+Ensure that the webOS SDK is installed[1] and the touchpad is attached via
+USB:
+
+    $ cd <webos-xbmcremote dir>
+    $ palm-package .
+    $ palm-install com.jerrykan.app.xbmcremote_<version>_all.ipk
+
+The application should now be installed on your Touchpad and can be launched
+like any other application.
+
+Be sure to set the XBMC host in the preferences, which can be accessed via the
+menu.
+
+[1] https://developer.palm.com/content/resources/develop/sdk_pdk_download.html
+
+
+Contact
+-------
+Send your questions, comments, patches to John Kristensen <john@jerrykan.com>
+
